@@ -31,13 +31,12 @@
       "projection": {
         "type": "mercator",
         "scale": 1000,
-        "center": [134, -25], // Center over Australia
-        "translate": [{"signal": "width / 2"}, {"signal": "height / 2"}]
+        "center": [134, -25],
+        "translate": [400, 300]
       },
       "background": "#f9f9f9",
       "layer": [
         {
-          // Graticule Layer
           "data": {
             "values": [{}],
             "transform": [
@@ -51,7 +50,6 @@
           }
         },
         {
-          // Base Map Layer
           "data": {
             "url": "js/georef-australia-state-millesime.json",
             "format": {
@@ -67,7 +65,6 @@
           }
         },
         {
-          // Choropleth Layer
           "data": {
             "url": "js/georef-australia-state-millesime.json",
             "format": {
@@ -77,12 +74,10 @@
           },
           "transform": [
             {
-              // Clean the 'ste_name' by removing [' and ']
               "calculate": "datum.properties.ste_name.substring(2, datum.properties.ste_name.length - 2)",
               "as": "ste_name_clean"
             },
             {
-              // Join CSV data based on the cleaned state name
               "lookup": "ste_name_clean",
               "from": {
                 "data": {
@@ -121,7 +116,7 @@
     };
 
     vegaEmbed('#symbol_map', spec, {actions: false}).then(function(result) {
-      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+      // Access the Vega view instance if needed
     }).catch(console.error);
   </script>
   
