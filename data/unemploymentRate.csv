@@ -1,10 +1,11 @@
-ste_name,UnemploymentRate
-New South Wales,4.0
-Victoria,4.5
-Queensland,4.2
-South Australia,4.0
-Western Australia,3.8
-Tasmania,4.3
-Northern Territory,4.3
-Australian Capital Territory,3.6
+ste_name,UnemploymentRateNormalized
+New South Wales,0.4444
+Victoria,1.0000
+Queensland,0.6667
+South Australia,0.4444
+Western Australia,0.2222
+Tasmania,0.7778
+Northern Territory,0.7778
+Australian Capital Territory,0.0000
+
 

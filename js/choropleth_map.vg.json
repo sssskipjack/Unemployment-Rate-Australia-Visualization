@@ -20,31 +20,31 @@
           "url": "data/unemploymentRate.csv"
         },
         "key": "ste_name",
-        "fields": ["UnemploymentRate"]
+        "fields": ["UnemploymentRateNormalized"]
       }
     },
     {
-      "calculate": "toNumber(datum.UnemploymentRate)",
-      "as": "UnemploymentRate_num"
+      "calculate": "toNumber(datum.UnemploymentRateNormalized)",
+      "as": "UnemploymentRateNormalized_num"
     }
   ],
   "mark": {"type": "geoshape"},
   "encoding": {
     "color": {
-      "field": "UnemploymentRate_num",
+      "field": "UnemploymentRateNormalized_num",
       "type": "quantitative",
       "scale": {"scheme": "reds"},
       "legend": {
-        "title": "Unemployment Rate (%)",
+        "title": "Unemployment Rate Normalized",
         "format": ".1f"
       }
     },
     "tooltip": [
       {"field": "ste_name_clean", "type": "nominal", "title": "State"},
       {
-        "field": "UnemploymentRate_num",
+        "field": "UnemploymentRateNormalized_num",
         "type": "quantitative",
-        "title": "Unemployment Rate (%)",
+        "title": "Unemployment Rate Normalized",
         "format": ".1f"
       }
     ]
