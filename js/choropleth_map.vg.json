@@ -20,7 +20,7 @@
       }
     },
     {
-      "calculate": "parseFloat(datum.UnemploymentRate.replace('%', ''))",
+      "calculate": "parseFloat(replace(datum.UnemploymentRate, '%', ''))",
       "as": "UnemploymentRate_num"
     }
   ],
