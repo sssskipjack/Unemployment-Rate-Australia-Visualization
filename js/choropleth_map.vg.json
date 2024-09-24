@@ -5,7 +5,7 @@
   "height": 400,
   "projection": {"type": "equalEarth"},
   "data": {
-    "url": "https://raw.githubusercontent.com/sssskipjack/Unemployment-Rate-Australia-Visualization/refs/heads/main/js/georef-australia-state-millesime.json",
+    "url": "https://raw.githubusercontent.com/sssskipjack/Unemployment-Rate-Australia-Visualization/main/js/georef-australia-state-millesime.json",
     "format": {"type": "topojson", "feature": "georef-australia-state-millesime"}
   },
   "transform": [
@@ -13,28 +13,32 @@
       "lookup": "properties.ste_name",
       "from": {
         "data": {
-          "url": "https://raw.githubusercontent.com/sssskipjack/Unemployment-Rate-Australia-Visualization/refs/heads/main/data/unemploymentRate.csv"
+          "url": "data/unemploymentRate.csv"
         },
         "key": "ste_name",
         "fields": ["UnemploymentRate"]
       }
-    },
-    {
-      "calculate": "parseFloat(replace(datum.UnemploymentRate, '%', ''))",
-      "as": "UnemploymentRate_num"
     }
   ],
   "mark": {"type": "geoshape"},
   "encoding": {
     "color": {
-      "field": "UnemploymentRate_num",
+      "field": "UnemploymentRate",
       "type": "quantitative",
       "scale": {"scheme": "reds"},
-      "legend": {"title": "Unemployment Rate (%)"}
+      "legend": {
+        "title": "Unemployment Rate (%)",
+        "format": ".1f"
+      }
     },
     "tooltip": [
       {"field": "properties.ste_name", "type": "nominal", "title": "State"},
-      {"field": "UnemploymentRate", "type": "nominal", "title": "Unemployment Rate"}
+      {
+        "field": "UnemploymentRate",
+        "type": "quantitative",
+        "title": "Unemployment Rate (%)",
+        "format": ".1f"
+      }
     ]
   }
 }
