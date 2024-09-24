@@ -1,37 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <title>Unemployment Rates by Australian State</title>
-  
-  <!-- Import Vega, Vega-Lite, and Vega-Embed -->
-  <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
+  <!-- Import Vega & Vega-Lite (does not have to be from CDN) -->
+  <script src="https://cdn.jsdelivr.net/npm/vega@5.22.1"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.5.0"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.21.0"></script>
   
-  <!-- Link to CSS for styling (if any) -->
+  <!-- CSS file -->
   <link rel="stylesheet" type="text/css" href="css/styles.css" media="all">
 
-  <!-- Optional: Remove Favicon Link if favicon.ico is not present to avoid 404 errors -->
-  <!-- <link rel="icon" href="favicon.ico" type="image/x-icon"> -->
-  
+
 </head>
 <body>
   
-  <!-- Container for the Choropleth Map -->
-  <div id="choropleth_map"></div>
+<div id="choropleth_map"></div>
 
-  <script type="text/javascript">
-    // Path to the Vega-Lite specification JSON file
-    var specPath = "js/unemployment_choropleth.vg.json";
-    
-    // Embed the visualization
-    vegaEmbed('#choropleth_map', specPath, {actions: false})
-      .then(function(result) {
-        // The Vega view instance (result.view) can be accessed for further interactions if needed
-      })
-      .catch(console.error);
-  </script>
-  
+<script type="text/javascript">
+
+  var spec2 = "js/choropleth_map.vg.json";
+  vegaEmbed('#choropleth_map', spec2).then(function(result) {
+    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+  }).catch(console.error);
+</script>
+
 </body>
 </html>
