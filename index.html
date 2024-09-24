@@ -9,6 +9,9 @@
   <!-- CSS file -->
   <link rel="stylesheet" type="text/css" href="css/styles.css" media="all">
   
+  <!-- Optional: Add Favicon to Eliminate Console Error -->
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  
 </head>
 <body>
   
@@ -73,8 +76,12 @@
             }
           },
           "transform": [
+            { // The topoJSON has the state names wrapped in a [] context, so we need to just remove it 
+              "calculate": "datum.properties.ste_name.replace(/['\\[\\]]/g, '')",
+              "as": "ste_name_clean"
+            },
             {
-              "lookup": "properties.ste_name",
+              "lookup": "ste_name_clean",
               "from": {
                 "data": {
                   "url": "data/unemploymentRate.csv"
@@ -84,7 +91,7 @@
               }
             },
             {
-              "calculate": "datum.UnemploymentRate != null ? parseFloat(datum.UnemploymentRate) : null",
+              "calculate": "datum.UnemploymentRate != null ? parseFloat(datum.UnemploymentRate.replace('%','')) : null",
               "as": "UnemploymentRateNum"
             }
           ],
@@ -100,7 +107,7 @@
               "title": "Unemployment Rate (%)",
               "scale": {
                 "scheme": "blues",
-                "domain": [3.5, 4.5] // This is based on the range of data
+                "domain": [3.5, 4.5] // Adjust based on data range
               }
             },
             "tooltip": [
@@ -113,6 +120,7 @@
     };
 
     vegaEmbed('#symbol_map', spec, {actions: false}).then(function(result) {
+      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
     }).catch(console.error);
   </script>
   
