@@ -88,7 +88,7 @@
               }
             },
             {
-              "calculate": "datum.UnemploymentRate != null ? parseFloat(datum.UnemploymentRate.replace('%','')) : null",
+              "calculate": "datum.UnemploymentRate != null ? parseFloat(datum.UnemploymentRate.substring(0, datum.UnemploymentRate.length - 1)) : null",
               "as": "UnemploymentRateNum"
             }
           ],
