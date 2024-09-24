@@ -1,23 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <!-- Import Vega & Vega-Lite -->
+  <meta charset="UTF-8">
+  <title>Unemployment Rates by Australian State</title>
+  
+  <!-- Import Vega, Vega-Lite, and Vega-Embed -->
   <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
   
-  <!-- CSS file -->
+  <!-- Link to CSS for styling (if any) -->
   <link rel="stylesheet" type="text/css" href="css/styles.css" media="all">
   
-  <!-- Optional: Remove Favicon Link if favicon.ico is not present -->
+  <!-- Optional: Remove Favicon Link if favicon.ico is not present to avoid 404 errors -->
   <!-- <link rel="icon" href="favicon.ico" type="image/x-icon"> -->
   
 </head>
 <body>
   
+  <!-- Container for the Map -->
   <div id="symbol_map"></div>
   
   <script type="text/javascript">
+    // Define the Vega-Lite specification
     const spec = {
       "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
       "width": 800,
@@ -32,15 +37,20 @@
         "type": "mercator",
         "scale": 1000,
         "center": [134, -25],
-        "translate": [400, 300]
+        "translate": [400, 300] // Fixed translate values to center the map
       },
       "background": "#f9f9f9",
       "layer": [
         {
+          // Graticule Layer for grid lines
           "data": {
             "values": [{}],
             "transform": [
-              {"type": "graticule", "extent": [[95, -44], [155, -10]], "step": [30, 30]}
+              {
+                "type": "graticule",
+                "extent": [[95, -44], [155, -10]],
+                "step": [30, 30]
+              }
             ]
           },
           "mark": {
@@ -50,6 +60,7 @@
           }
         },
         {
+          // Base Map Layer
           "data": {
             "url": "js/georef-australia-state-millesime.json",
             "format": {
@@ -65,6 +76,7 @@
           }
         },
         {
+          // Choropleth Layer
           "data": {
             "url": "js/georef-australia-state-millesime.json",
             "format": {
@@ -74,10 +86,12 @@
           },
           "transform": [
             {
+              // Clean the 'ste_name' by removing [' and ']
               "calculate": "datum.properties.ste_name.substring(2, datum.properties.ste_name.length - 2)",
               "as": "ste_name_clean"
             },
             {
+              // Join CSV data based on the cleaned state name
               "lookup": "ste_name_clean",
               "from": {
                 "data": {
@@ -88,6 +102,7 @@
               }
             },
             {
+              // Convert 'UnemploymentRate' from string to number by removing '%' and parsing
               "calculate": "datum.UnemploymentRate != null ? parseFloat(datum.UnemploymentRate.substring(0, datum.UnemploymentRate.length - 1)) : null",
               "as": "UnemploymentRateNum"
             }
@@ -115,8 +130,9 @@
       ]
     };
 
+    // Embed the Vega-Lite specification into the div with id 'symbol_map'
     vegaEmbed('#symbol_map', spec, {actions: false}).then(function(result) {
-      // Access the Vega view instance if needed
+      // The view instance (result.view) can be used for further interactions if needed
     }).catch(console.error);
   </script>
   
