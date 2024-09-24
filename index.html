@@ -9,8 +9,8 @@
   <!-- CSS file -->
   <link rel="stylesheet" type="text/css" href="css/styles.css" media="all">
   
-  <!-- Optional: Add Favicon to Eliminate Console Error -->
-  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <!-- Optional: Remove Favicon Link if favicon.ico is not present -->
+  <!-- <link rel="icon" href="favicon.ico" type="image/x-icon"> -->
   
 </head>
 <body>
@@ -77,10 +77,12 @@
           },
           "transform": [
             {
-              "calculate": "datum.properties.ste_name.replace(/['\\[\\]]/g, '')",
+              // Clean the 'ste_name' by removing [' and ']
+              "calculate": "datum.properties.ste_name.substring(2, datum.properties.ste_name.length - 2)",
               "as": "ste_name_clean"
             },
             {
+              // Join CSV data based on the cleaned state name
               "lookup": "ste_name_clean",
               "from": {
                 "data": {
@@ -110,7 +112,7 @@
               }
             },
             "tooltip": [
-              {"field": "properties.ste_name", "type": "nominal", "title": "State"},
+              {"field": "ste_name_clean", "type": "nominal", "title": "State"},
               {"field": "UnemploymentRateNum", "type": "quantitative", "title": "Unemployment Rate (%)"}
             ]
           }
@@ -119,6 +121,7 @@
     };
 
     vegaEmbed('#symbol_map', spec, {actions: false}).then(function(result) {
+      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
     }).catch(console.error);
   </script>
   
