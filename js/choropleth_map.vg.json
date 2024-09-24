@@ -1,16 +1,20 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": "Australia Unemployment Rate",
+  "title": "Australia Unemployment Rate By State",
   "width": 800,
   "height": 400,
-  "projection": {"type": "equalEarth"},
+  "projection": {"type": "mercator"},
   "data": {
     "url": "https://raw.githubusercontent.com/sssskipjack/Unemployment-Rate-Australia-Visualization/main/js/georef-australia-state-millesime.json",
     "format": {"type": "topojson", "feature": "georef-australia-state-millesime"}
   },
   "transform": [
     {
-      "lookup": "properties.ste_name",
+      "calculate": "substring(datum.properties.ste_name, 2, length(datum.properties.ste_name) - 2)",
+      "as": "ste_name_clean"
+    },
+    {
+      "lookup": "ste_name_clean",
       "from": {
         "data": {
           "url": "data/unemploymentRate.csv"
@@ -18,12 +22,16 @@
         "key": "ste_name",
         "fields": ["UnemploymentRate"]
       }
+    },
+    {
+      "calculate": "toNumber(datum.UnemploymentRate)",
+      "as": "UnemploymentRate_num"
     }
   ],
   "mark": {"type": "geoshape"},
   "encoding": {
     "color": {
-      "field": "UnemploymentRate",
+      "field": "UnemploymentRate_num",
       "type": "quantitative",
       "scale": {"scheme": "reds"},
       "legend": {
@@ -32,9 +40,9 @@
       }
     },
     "tooltip": [
-      {"field": "properties.ste_name", "type": "nominal", "title": "State"},
+      {"field": "ste_name_clean", "type": "nominal", "title": "State"},
       {
-        "field": "UnemploymentRate",
+        "field": "UnemploymentRate_num",
         "type": "quantitative",
         "title": "Unemployment Rate (%)",
         "format": ".1f"
