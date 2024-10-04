@@ -5,22 +5,42 @@
   <script src="https://cdn.jsdelivr.net/npm/vega@5.22.1"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.5.0"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.21.0"></script>
+
+  <!-- nice sans-serif font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
   
   <!-- CSS file -->
   <link rel="stylesheet" type="text/css" href="css/styles.css" media="all">
 
+  <!-- Apply the font to the entire page -->
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+    }
+  </style>
 
+  <title>Employment Rates Across Australia</title>
 </head>
 <body>
-  
-<div id="choropleth_map"></div>
 
-<script type="text/javascript">
-  var spec2 = "js/choropleth_map.vg.json";
-  vegaEmbed('#choropleth_map', spec2).then(function(result) {
-    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
-  }).catch(console.error);
-</script>
+  <!-- Page heading -->
+  <header>
+    <h1>Exploring Employment Rates Across Australia</h1>
+    <p>This visualisation provides insights into employment trends across different states of Australia, using interactive charts and a choropleth map.</p>
+  </header>
+  
+  <!-- Choropleth map container -->
+  <div id="choropleth_map"></div>
+
+  <!-- Vega-Lite script for choropleth map -->
+  <script type="text/javascript">
+    var spec2 = "js/choropleth_map.vg.json";
+    vegaEmbed('#choropleth_map', spec2).then(function(result) {
+      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+    }).catch(console.error);
+  </script>
 
 </body>
 </html>
