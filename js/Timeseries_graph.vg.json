@@ -1,0 +1,106 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "vconcat": [
+      {
+        "width": "container",
+        "height": 400,
+        "title": "Australia Unemployment Rate By State",
+        "projection": {"type": "mercator"},
+        "data": {
+          "url": "https://raw.githubusercontent.com/sssskipjack/Unemployment-Rate-Australia-Visualization/main/js/georef-australia-state-millesime.json",
+          "format": {"type": "topojson", "feature": "georef-australia-state-millesime"}
+        },
+        "transform": [
+          {
+            "calculate": "replace(datum.properties.ste_name, /'/g, '')",
+            "as": "ste_name_clean"
+          },
+          {
+            "lookup": "ste_name_clean",
+            "from": {
+              "data": {
+                "url": "data/unemployment_data_long.csv"
+              },
+              "key": "State",
+              "fields": ["UnemploymentRate"],
+              "transform": [
+                {"filter": {"param": "time_brush"}}
+              ]
+            }
+          }
+        ],
+        "mark": {"type": "geoshape"},
+        "encoding": {
+          "color": {
+            "field": "UnemploymentRate",
+            "type": "quantitative",
+            "scale": {"scheme": "reds"},
+            "legend": {
+              "title": "Unemployment Rate",
+              "format": ".1f"
+            }
+          },
+          "tooltip": [
+            {"field": "ste_name_clean", "type": "nominal", "title": "State"},
+            {
+              "field": "UnemploymentRate",
+              "type": "quantitative",
+              "title": "Unemployment Rate",
+              "format": ".1f"
+            }
+          ]
+        }
+      },
+      {
+        "width": "container",
+        "height": 60,
+        "mark": "line",
+        "title": "Select Time Range to Filter Data",
+        "params": [
+          {
+            "name": "time_brush",
+            "select": {"type": "interval", "encodings": ["x"]}
+          }
+        ],
+        "data": {
+          "url": "data/unemployment_data_long.csv"
+        },
+        "encoding": {
+          "x": {
+            "field": "Date",
+            "type": "temporal",
+            "axis": {"title": "", "format": "%Y"}
+          },
+          "y": {
+            "field": "UnemploymentRate",
+            "aggregate": "mean",
+            "axis": {"tickCount": 3, "grid": false},
+            "title": "Average Unemployment Rate"
+          }
+        }
+      },
+      {
+        "width": "container",
+        "mark": "line",
+        "data": {
+          "url": "data/unemployment_data_long.csv"
+        },
+        "encoding": {
+          "x": {
+            "field": "Date",
+            "type": "temporal",
+            "scale": {"domain": {"param": "time_brush"}},
+            "axis": {"title": "", "tickCount": 5, "grid": false}
+          },
+          "y": {
+            "field": "UnemploymentRate",
+            "type": "quantitative",
+            "title": "Unemployment Rate"
+          },
+          "color": {"field": "State", "type": "nominal"}
+        }
+      }
+    ],
+    "config": {"title": {"font": "sans-serif", "fontSize": 14}}
+  }
+  

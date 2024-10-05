@@ -42,5 +42,14 @@
     }).catch(console.error);
   </script>
 
+  <div id="Timeseries_graph"></div>
+
+  <script type="text/javascript">
+    var spec1 = "js/Timeseries_graph.vg.json";
+    vegaEmbed('#Timeseries_graph', spec1).then(function(result) {
+      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+    }).catch(console.error);
+  </script>
+
 </body>
 </html>
