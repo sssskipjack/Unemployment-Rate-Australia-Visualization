@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <!-- Import Vega & Vega-Lite (does not have to be from CDN) -->
+  <!-- Import Vega & Vega-Lite -->
   <script src="https://cdn.jsdelivr.net/npm/vega@5.22.1"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.5.0"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.21.0"></script>
 
-  <!-- nice sans-serif font -->
+  <!-- Nice sans-serif font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
@@ -18,6 +18,36 @@
   <style>
     body {
       font-family: 'Roboto', sans-serif;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+    }
+    header {
+      text-align: center;
+      padding: 2rem;
+      background-color: #f4f4f4;
+      border-bottom: 1px solid #ddd;
+    }
+    h1 {
+      margin: 0;
+      font-size: 2.5rem;
+      color: #333;
+    }
+    p {
+      font-size: 1.2rem;
+      color: #666;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin: 2rem;
+    }
+    #choropleth_map, #Timeseries_graph {
+      width: 100%;
+      max-width: 1200px;
+      margin-bottom: 3rem;
     }
   </style>
 
@@ -30,16 +60,28 @@
     <h1>Exploring Employment Rates Across Australia</h1>
     <p>This visualisation provides insights into employment trends across different states of Australia, using interactive charts and a choropleth map.</p>
   </header>
-  
 
-  <div id="Timeseries_graph"></div>
+  <div class="container">
+    <!-- Choropleth Map Visualization -->
+    <div id="choropleth_map"></div>
 
+    <!-- Time Series Graph Visualization -->
+    <div id="Timeseries_graph"></div>
+  </div>
+
+  <!-- Vega Embed Scripts for Choropleth Map and Time Series Graph -->
   <script type="text/javascript">
-    var spec1 = "js/Timeseries_graph.vg.json";
-    vegaEmbed('#Timeseries_graph', spec1).then(function(result) {
+    var specChoropleth = "js/choropleth_map.vg.json";
+    vegaEmbed('#choropleth_map', specChoropleth).then(function(result) {
+      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+    }).catch(console.error);
+
+    var specTimeseries = "js/Timeseries_graph.vg.json";
+    vegaEmbed('#Timeseries_graph', specTimeseries).then(function(result) {
       // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
     }).catch(console.error);
   </script>
 
 </body>
 </html>
+

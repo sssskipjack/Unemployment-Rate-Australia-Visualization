@@ -3,58 +3,6 @@
   "vconcat": [
     {
       "width": "container",
-      "height": 400,
-      "title": "Australia Unemployment Rate By State",
-      "projection": {"type": "mercator"},
-      "data": {
-        "url": "https://raw.githubusercontent.com/sssskipjack/Unemployment-Rate-Australia-Visualization/main/js/georef-australia-state-millesime.json",
-        "format": {"type": "topojson", "feature": "georef-australia-state-millesime"}
-      },
-      "transform": [
-        {
-          "calculate": "replace(datum.properties.ste_name, /\\['|']+/g, '')",
-          "as": "ste_name_clean"
-        },
-        {
-          "calculate": "datum.ste_name_clean == 'Victoria' ? 'VIC' : datum.ste_name_clean == 'New South Wales' ? 'NSW' : datum.ste_name_clean == 'Western Australia' ? 'WA' : datum.ste_name_clean == 'South Australia' ? 'SA' : datum.ste_name_clean == 'Northern Territory' ? 'NT' : datum.ste_name_clean == 'Australian Capital Territory' ? 'ACT' : datum.ste_name_clean == 'Tasmania' ? 'TAS' : datum.ste_name_clean == 'Queensland' ? 'QLD' : null",
-          "as": "state_abbr"
-        },
-        {
-          "lookup": "state_abbr",
-          "from": {
-            "data": {
-              "url": "https://raw.githubusercontent.com/sssskipjack/Unemployment-Rate-Australia-Visualization/refs/heads/main/data/unemploymentRateTimeSeries.csv",
-              "format": {"type": "csv"}
-            },
-            "key": "State",
-            "fields": ["Unemployment Rate"]
-          }
-        }
-      ],
-      "mark": {"type": "geoshape"},
-      "encoding": {
-        "color": {
-          "field": "Unemployment Rate",
-          "type": "quantitative",
-          "scale": {"scheme": "reds"},
-          "legend": {
-            "title": "Unemployment Rate",
-            "format": ".1f"
-          }
-        },
-        "tooltip": [
-          {"field": "ste_name_clean", "type": "nominal", "title": "State"},
-          {
-            "field": "Unemployment Rate",
-            "type": "quantitative",
-            "title": "Unemployment Rate",
-            "format": ".1f"
-          }
-        ]
-      }
-    },
-    {
-      "width": "container",
       "height": 60,
       "mark": "line",
       "title": "Select Time Range to Filter Data",
@@ -107,3 +55,4 @@
   ],
   "config": {"title": {"font": "sans-serif", "fontSize": 14}}
 }
+

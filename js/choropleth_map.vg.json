@@ -1,8 +1,8 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": "Australia Unemployment Rate By State",
-  "width": 800,
+  "width": "container",
   "height": 400,
+  "title": "Australia Unemployment Rate By State",
   "projection": {"type": "mercator"},
   "data": {
     "url": "https://raw.githubusercontent.com/sssskipjack/Unemployment-Rate-Australia-Visualization/main/js/georef-australia-state-millesime.json",
@@ -10,43 +10,46 @@
   },
   "transform": [
     {
-      "calculate": "substring(datum.properties.ste_name, 2, length(datum.properties.ste_name) - 2)",
+      "calculate": "replace(datum.properties.ste_name, /\\['|']+/g, '')",
       "as": "ste_name_clean"
     },
     {
-      "lookup": "ste_name_clean",
-      "from": {
-        "data": {
-          "url": "data/unemploymentRate.csv"
-        },
-        "key": "ste_name",
-        "fields": ["UnemploymentRateNormalized"]
-      }
+      "calculate": "datum.ste_name_clean == 'Victoria' ? 'VIC' : datum.ste_name_clean == 'New South Wales' ? 'NSW' : datum.ste_name_clean == 'Western Australia' ? 'WA' : datum.ste_name_clean == 'South Australia' ? 'SA' : datum.ste_name_clean == 'Northern Territory' ? 'NT' : datum.ste_name_clean == 'Australian Capital Territory' ? 'ACT' : datum.ste_name_clean == 'Tasmania' ? 'TAS' : datum.ste_name_clean == 'Queensland' ? 'QLD' : null",
+      "as": "state_abbr"
     },
     {
-      "calculate": "toNumber(datum.UnemploymentRateNormalized)",
-      "as": "UnemploymentRateNormalized_num"
+      "lookup": "state_abbr",
+      "from": {
+        "data": {
+          "url": "https://raw.githubusercontent.com/sssskipjack/Unemployment-Rate-Australia-Visualization/refs/heads/main/data/unemploymentRateTimeSeries.csv",
+          "format": {"type": "csv"}
+        },
+        "key": "State",
+        "fields": ["Unemployment Rate"]
+      }
     }
   ],
   "mark": {"type": "geoshape"},
   "encoding": {
     "color": {
-      "field": "UnemploymentRateNormalized_num",
+      "field": "Unemployment Rate",
       "type": "quantitative",
       "scale": {"scheme": "reds"},
       "legend": {
-        "title": "Unemployment Rate Normalized",
+        "title": "Unemployment Rate",
         "format": ".1f"
       }
     },
     "tooltip": [
       {"field": "ste_name_clean", "type": "nominal", "title": "State"},
       {
-        "field": "UnemploymentRateNormalized_num",
+        "field": "Unemployment Rate",
         "type": "quantitative",
-        "title": "Unemployment Rate Normalized",
+        "title": "Unemployment Rate",
         "format": ".1f"
       }
     ]
-  }
+  },
+  "config": {"title": {"font": "sans-serif", "fontSize": 14}}
 }
+
