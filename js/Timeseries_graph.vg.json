@@ -19,7 +19,7 @@
             "lookup": "ste_name_clean",
             "from": {
               "data": {
-                "url": "data/unemployment_data_long.csv"
+                "url": "https://raw.githubusercontent.com/sssskipjack/Unemployment-Rate-Australia-Visualization/refs/heads/main/data/cleaned_unemployment_data.csv"
               },
               "key": "State",
               "fields": ["UnemploymentRate"],
@@ -63,7 +63,7 @@
           }
         ],
         "data": {
-          "url": "data/unemployment_data_long.csv"
+          "url": "https://raw.githubusercontent.com/sssskipjack/Unemployment-Rate-Australia-Visualization/refs/heads/main/data/cleaned_unemployment_data.csv"
         },
         "encoding": {
           "x": {
@@ -83,7 +83,7 @@
         "width": "container",
         "mark": "line",
         "data": {
-          "url": "data/unemployment_data_long.csv"
+          "url": "https://raw.githubusercontent.com/sssskipjack/Unemployment-Rate-Australia-Visualization/refs/heads/main/data/cleaned_unemployment_data.csv"
         },
         "encoding": {
           "x": {
