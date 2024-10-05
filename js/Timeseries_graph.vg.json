@@ -1,106 +1,109 @@
 {
-    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "vconcat": [
-      {
-        "width": "container",
-        "height": 400,
-        "title": "Australia Unemployment Rate By State",
-        "projection": {"type": "mercator"},
-        "data": {
-          "url": "https://raw.githubusercontent.com/sssskipjack/Unemployment-Rate-Australia-Visualization/main/js/georef-australia-state-millesime.json",
-          "format": {"type": "topojson", "feature": "georef-australia-state-millesime"}
-        },
-        "transform": [
-          {
-            "calculate": "replace(datum.properties.ste_name, /'/g, '')",
-            "as": "ste_name_clean"
-          },
-          {
-            "lookup": "ste_name_clean",
-            "from": {
-              "data": {
-                "url": "https://raw.githubusercontent.com/sssskipjack/Unemployment-Rate-Australia-Visualization/refs/heads/main/data/cleaned_unemployment_data.csv"
-              },
-              "key": "State",
-              "fields": ["UnemploymentRate"],
-              "transform": [
-                {"filter": {"param": "time_brush"}}
-              ]
-            }
-          }
-        ],
-        "mark": {"type": "geoshape"},
-        "encoding": {
-          "color": {
-            "field": "UnemploymentRate",
-            "type": "quantitative",
-            "scale": {"scheme": "reds"},
-            "legend": {
-              "title": "Unemployment Rate",
-              "format": ".1f"
-            }
-          },
-          "tooltip": [
-            {"field": "ste_name_clean", "type": "nominal", "title": "State"},
-            {
-              "field": "UnemploymentRate",
-              "type": "quantitative",
-              "title": "Unemployment Rate",
-              "format": ".1f"
-            }
-          ]
-        }
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "vconcat": [
+    {
+      "width": "container",
+      "height": 400,
+      "title": "Australia Unemployment Rate By State",
+      "projection": {"type": "mercator"},
+      "data": {
+        "url": "https://raw.githubusercontent.com/sssskipjack/Unemployment-Rate-Australia-Visualization/main/js/georef-australia-state-millesime.json",
+        "format": {"type": "topojson", "feature": "georef-australia-state-millesime"}
       },
-      {
-        "width": "container",
-        "height": 60,
-        "mark": "line",
-        "title": "Select Time Range to Filter Data",
-        "params": [
-          {
-            "name": "time_brush",
-            "select": {"type": "interval", "encodings": ["x"]}
-          }
-        ],
-        "data": {
-          "url": "https://raw.githubusercontent.com/sssskipjack/Unemployment-Rate-Australia-Visualization/refs/heads/main/data/cleaned_unemployment_data.csv"
+      "transform": [
+        {
+          "calculate": "replace(datum.properties.ste_name, /\\['|']+/g, '')",
+          "as": "ste_name_clean"
         },
-        "encoding": {
-          "x": {
-            "field": "Date",
-            "type": "temporal",
-            "axis": {"title": "", "format": "%Y"}
-          },
-          "y": {
-            "field": "UnemploymentRate",
-            "aggregate": "mean",
-            "axis": {"tickCount": 3, "grid": false},
-            "title": "Average Unemployment Rate"
+        {
+          "calculate": "datum.ste_name_clean == 'Victoria' ? 'VIC' : datum.ste_name_clean == 'New South Wales' ? 'NSW' : datum.ste_name_clean == 'Western Australia' ? 'WA' : datum.ste_name_clean == 'South Australia' ? 'SA' : datum.ste_name_clean == 'Northern Territory' ? 'NT' : datum.ste_name_clean == 'Australian Capital Territory' ? 'ACT' : datum.ste_name_clean == 'Tasmania' ? 'TAS' : datum.ste_name_clean == 'Queensland' ? 'QLD' : null",
+          "as": "state_abbr"
+        },
+        {
+          "lookup": "state_abbr",
+          "from": {
+            "data": {
+              "url": "https://raw.githubusercontent.com/sssskipjack/Unemployment-Rate-Australia-Visualization/refs/heads/main/data/unemploymentRateTimeSeries.csv",
+              "format": {"type": "csv"}
+            },
+            "key": "State",
+            "fields": ["Unemployment Rate"]
           }
         }
-      },
-      {
-        "width": "container",
-        "mark": "line",
-        "data": {
-          "url": "https://raw.githubusercontent.com/sssskipjack/Unemployment-Rate-Australia-Visualization/refs/heads/main/data/cleaned_unemployment_data.csv"
+      ],
+      "mark": {"type": "geoshape"},
+      "encoding": {
+        "color": {
+          "field": "Unemployment Rate",
+          "type": "quantitative",
+          "scale": {"scheme": "reds"},
+          "legend": {
+            "title": "Unemployment Rate",
+            "format": ".1f"
+          }
         },
-        "encoding": {
-          "x": {
-            "field": "Date",
-            "type": "temporal",
-            "scale": {"domain": {"param": "time_brush"}},
-            "axis": {"title": "", "tickCount": 5, "grid": false}
-          },
-          "y": {
-            "field": "UnemploymentRate",
+        "tooltip": [
+          {"field": "ste_name_clean", "type": "nominal", "title": "State"},
+          {
+            "field": "Unemployment Rate",
             "type": "quantitative",
-            "title": "Unemployment Rate"
-          },
-          "color": {"field": "State", "type": "nominal"}
+            "title": "Unemployment Rate",
+            "format": ".1f"
+          }
+        ]
+      }
+    },
+    {
+      "width": "container",
+      "height": 60,
+      "mark": "line",
+      "title": "Select Time Range to Filter Data",
+      "params": [
+        {
+          "name": "time_brush",
+          "select": {"type": "interval", "encodings": ["x"]}
+        }
+      ],
+      "data": {
+        "url": "https://raw.githubusercontent.com/sssskipjack/Unemployment-Rate-Australia-Visualization/refs/heads/main/data/unemploymentRateTimeSeries.csv",
+        "format": {"type": "csv"}
+      },
+      "encoding": {
+        "x": {
+          "field": "Date",
+          "type": "temporal",
+          "axis": {"title": "", "format": "%Y"}
+        },
+        "y": {
+          "field": "Unemployment Rate",
+          "aggregate": "mean",
+          "axis": {"tickCount": 3, "grid": false},
+          "title": "Average Unemployment Rate"
         }
       }
-    ],
-    "config": {"title": {"font": "sans-serif", "fontSize": 14}}
-  }
-  
+    },
+    {
+      "width": "container",
+      "mark": "line",
+      "data": {
+        "url": "https://raw.githubusercontent.com/sssskipjack/Unemployment-Rate-Australia-Visualization/refs/heads/main/data/unemploymentRateTimeSeries.csv",
+        "format": {"type": "csv"}
+      },
+      "encoding": {
+        "x": {
+          "field": "Date",
+          "type": "temporal",
+          "scale": {"domain": {"param": "time_brush"}},
+          "axis": {"title": "", "tickCount": 5, "grid": false}
+        },
+        "y": {
+          "field": "Unemployment Rate",
+          "type": "quantitative",
+          "title": "Unemployment Rate"
+        },
+        "color": {"field": "State", "type": "nominal"}
+      }
+    }
+  ],
+  "config": {"title": {"font": "sans-serif", "fontSize": 14}}
+}
