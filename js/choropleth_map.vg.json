@@ -75,7 +75,7 @@
             "type": "quantitative",
             "scale": {
               "domain": [0, 15],
-              "scheme": "blues"
+              "scheme": "reds"
             },
             "legend": {
               "titleFont": "Arial",
