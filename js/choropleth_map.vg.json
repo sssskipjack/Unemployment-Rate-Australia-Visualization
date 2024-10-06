@@ -1,55 +1,110 @@
 {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": "container",
-  "height": 400,
-  "title": "Australia Unemployment Rate By State",
-  "projection": {"type": "mercator"},
-  "data": {
-    "url": "https://raw.githubusercontent.com/sssskipjack/Unemployment-Rate-Australia-Visualization/main/js/georef-australia-state-millesime.json",
-    "format": {"type": "topojson", "feature": "georef-australia-state-millesime"}
-  },
-  "transform": [
-    {
-      "calculate": "replace(datum.properties.ste_name, /\\['|']+/g, '')",
-      "as": "ste_name_clean"
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": {
+      "text": "Unemployment Rates in Australia by State (1978-2024)",
+      "font": "Arial",
+      "fontSize": 16,
+      "anchor": "middle",
+      "color": "#333"
     },
-    {
-      "calculate": "datum.ste_name_clean == 'Victoria' ? 'VIC' : datum.ste_name_clean == 'New South Wales' ? 'NSW' : datum.ste_name_clean == 'Western Australia' ? 'WA' : datum.ste_name_clean == 'South Australia' ? 'SA' : datum.ste_name_clean == 'Northern Territory' ? 'NT' : datum.ste_name_clean == 'Australian Capital Territory' ? 'ACT' : datum.ste_name_clean == 'Tasmania' ? 'TAS' : datum.ste_name_clean == 'Queensland' ? 'QLD' : null",
-      "as": "state_abbr"
+    "width": "container",
+    "height": 500,
+    "params": [
+      {
+        "name": "Year_selection",
+        "value": 1998,
+        "bind": {
+          "input": "range",
+          "min": 1978,
+          "max": 2024,
+          "step": 1,
+          "name": "Select Year: ",
+          "labelFont": "Arial",
+          "labelFontSize": 12
+        }
+      }
+    ],
+    "projection": {
+      "type": "mercator"
     },
-    {
-      "lookup": "state_abbr",
-      "from": {
+    "layer": [
+      {
+        "data": {
+          "url": "https://raw.githubusercontent.com/sssskipjack/Unemployment-Rate-Australia-Visualization/main/js/georef-australia-state-millesime.json",
+          "format": {
+            "type": "topojson",
+            "feature": "georef-australia-state-millesime"
+          }
+        },
+        "mark": {
+          "type": "geoshape",
+          "fill": "#ddd",
+          "stroke": "white",
+          "strokeWidth": 1
+        },
+        "encoding": {
+          "tooltip": {"field": "properties.ste_name", "type": "nominal", "title": "State"}
+        }
+      },
+      {
         "data": {
           "url": "https://raw.githubusercontent.com/sssskipjack/Unemployment-Rate-Australia-Visualization/refs/heads/main/data/unemploymentRateTimeSeries.csv",
           "format": {"type": "csv"}
         },
-        "key": "State",
-        "fields": ["Unemployment Rate"]
+        "transform": [
+          {"calculate": "year(datum.Date)", "as": "year"},
+          {"filter": "datum.year == Year_selection"},
+          {
+            "lookup": "State",
+            "from": {
+              "data": {
+                "url": "https://raw.githubusercontent.com/sssskipjack/Unemployment-Rate-Australia-Visualization/main/js/georef-australia-state-millesime.json",
+                "format": {"type": "topojson", "feature": "georef-australia-state-millesime"}
+              },
+              "key": "properties.ste_iso3166"
+            },
+            "as": "geo"
+          }
+        ],
+        "mark": {"type": "geoshape", "stroke": "#fff", "strokeWidth": 0.5},
+        "encoding": {
+          "shape": {"field": "geo", "type": "geojson"},
+          "color": {
+            "field": "Unemployment Rate",
+            "title": "Unemployment Rate (%)",
+            "type": "quantitative",
+            "scale": {
+              "domain": [0, 15],
+              "scheme": "blues"
+            },
+            "legend": {
+              "titleFont": "Arial",
+              "titleFontSize": 14,
+              "labelFont": "Arial",
+              "labelFontSize": 12,
+              "labelColor": "#333"
+            }
+          },
+          "tooltip": [
+            {"field": "State", "type": "nominal", "title": "State"},
+            {
+              "field": "Unemployment Rate",
+              "type": "quantitative",
+              "title": "Unemployment Rate (%)",
+              "format": ".1f"
+            },
+            {"field": "year", "type": "quantitative", "title": "Year"}
+          ]
+        }
+      }
+    ],
+    "config": {
+      "title": {"font": "Arial", "fontSize": 16, "color": "#333"},
+      "axis": {
+        "labelFont": "Arial",
+        "labelFontSize": 12,
+        "labelColor": "#333"
       }
     }
-  ],
-  "mark": {"type": "geoshape"},
-  "encoding": {
-    "color": {
-      "field": "Unemployment Rate",
-      "type": "quantitative",
-      "scale": {"scheme": "reds"},
-      "legend": {
-        "title": "Unemployment Rate",
-        "format": ".1f"
-      }
-    },
-    "tooltip": [
-      {"field": "ste_name_clean", "type": "nominal", "title": "State"},
-      {
-        "field": "Unemployment Rate",
-        "type": "quantitative",
-        "title": "Unemployment Rate",
-        "format": ".1f"
-      }
-    ]
-  },
-  "config": {"title": {"font": "sans-serif", "fontSize": 14}}
-}
-
+  }
+  

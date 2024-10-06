@@ -11,8 +11,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
   
-  <!-- CSS file -->
-  <link rel="stylesheet" type="text/css" href="css/styles.css" media="all">
+  <!-- Pure.css -->
+  <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.6/build/pure-min.css">
 
   <!-- Apply the font to the entire page -->
   <style>
@@ -21,52 +21,86 @@
       margin: 0;
       padding: 0;
       line-height: 1.6;
+      background-color: #fafafa;
     }
+
     header {
       text-align: center;
       padding: 2rem;
       background-color: #f4f4f4;
       border-bottom: 1px solid #ddd;
     }
+
     h1 {
       margin: 0;
       font-size: 2.5rem;
       color: #333;
     }
+
     p {
       font-size: 1.2rem;
       color: #666;
     }
+
     .container {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      margin: 2rem;
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 1rem;
     }
+
+    .chart-description {
+      text-align: center;
+      margin-bottom: 2rem;
+      font-size: 1.1rem;
+      color: #555;
+    }
+
     #choropleth_map, #Timeseries_graph {
       width: 100%;
-      max-width: 1200px;
       margin-bottom: 3rem;
+    }
+
+    @media (min-width: 768px) {
+      .pure-g [class*="pure-u"] {
+        padding: 1rem;
+      }
+    }
+
+    .content-wrapper {
+      padding: 1rem;
     }
   </style>
 
-  <title>Employment Rates Across Australia</title>
+  <title>Exploring Employment and Unemployment Trends in Australia</title>
 </head>
 <body>
 
   <!-- Page heading -->
   <header>
-    <h1>Exploring Employment Rates Across Australia</h1>
-    <p>This visualisation provides insights into employment trends across different states of Australia, using interactive charts and a choropleth map.</p>
+    <h1>Australia's Employment Landscape: Regional and Temporal Trends</h1>
+    <p>This dashboard visualizes Australia's unemployment trends over time and across regions, offering a closer look at how employment rates vary geographically and historically.</p>
   </header>
 
+  <!-- Main container -->
   <div class="container">
-    <!-- Choropleth Map Visualization -->
-    <div id="choropleth_map"></div>
+    <!-- Grid layout for responsiveness -->
+    <div class="pure-g">
+      <!-- Choropleth Map Visualization -->
+      <div class="pure-u-1 pure-u-md-1-2">
+        <div id="choropleth_map"></div>
+        <div class="chart-description">
+          <p>The choropleth map above highlights the unemployment rates across Australia's states and territories for the selected year. Darker colors represent higher unemployment rates, offering a clear contrast between regions with more challenging labor markets and those with better employment conditions.</p>
+        </div>
+      </div>
 
-    <!-- Time Series Graph Visualization -->
-    <div id="Timeseries_graph"></div>
+      <!-- Time Series Graph Visualization -->
+      <div class="pure-u-1 pure-u-md-1-2">
+        <div id="Timeseries_graph"></div>
+        <div class="chart-description">
+          <p>This interactive line chart visualizes the historical trend of unemployment rates across Australia. It captures periods of economic fluctuation, allowing you to explore changes in the labor market over time. Use the brush above the chart to zoom into specific time ranges.</p>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- Vega Embed Scripts for Choropleth Map and Time Series Graph -->
@@ -84,4 +118,3 @@
 
 </body>
 </html>
-
