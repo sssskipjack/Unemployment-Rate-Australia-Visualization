@@ -51,17 +51,17 @@
             "labelFontSize": 12,
             "labelColor": "#333"
           }
-        }
-      },
-      "tooltip": [
-        {"field": "Date", "type": "temporal", "title": "Date", "format": "%b %Y"},
-        {"field": "State", "type": "nominal", "title": "State"},
-        {"field": "Unemployment Rate", "type": "quantitative", "title": "Unemployment Rate (%)", "format": ".1f"}
-      ]
+        },
+        "tooltip": [
+          {"field": "Date", "type": "temporal", "title": "Date", "format": "%b %Y"},
+          {"field": "State", "type": "nominal", "title": "State"},
+          {"field": "Unemployment Rate", "type": "quantitative", "title": "Unemployment Rate (%)", "format": ".1f"}
+        ]
+      }
     },
     {
       "width": "container",
-      "height": 60,
+      "height": 100,
       "mark": "line",
       "title": {
         "text": "Zoom into Specific Timeframes",
@@ -102,11 +102,13 @@
             "labelFontSize": 12,
             "labelColor": "#333"
           },
-          "title": "Average Unemployment Rate (%)",
-          "titleFont": "Arial",
-          "titleFontSize": 14
-        }
-      }
+          "title": "Average Unemployment Rate (%)"
+        },
+    "tooltip": [
+      {"field": "Date", "type": "temporal", "title": "Date", "format": "%b %Y"},
+      {"field": "Unemployment Rate", "type": "quantitative", "title": "Average Unemployment Rate (%)", "aggregate": "mean", "format": ".1f"}
+    ]
+     }
     }
   ],
   "config": {

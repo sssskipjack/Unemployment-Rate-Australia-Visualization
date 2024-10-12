@@ -21,13 +21,56 @@
       margin: 0;
       padding: 0;
       line-height: 1.6;
-      background-color: #fafafa;
+      /* Remove overflow hidden */
     }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('Melburnian_Skyline.jpg') no-repeat center center fixed;
+      background-size: cover;
+      filter: blur(8px); /* Only this background image is blurred */
+      z-index: -1; /* Place the blurred background behind the content */
+    }
+
+    .container {
+      max-width: 1600px;
+      margin: 2rem auto;
+      padding: 1rem;
+      background-color: rgba(255, 255, 255, 0.9); /* Slight transparency to show background */
+      box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1); /* Subtle shadow for depth */
+      border-radius: 10px; /* Rounded corners */
+      z-index: 1;
+      position: relative; /* Ensure it stays on top of the background */
+    }
+    header {
+      text-align: center;
+      padding: 2rem;
+      background-color: rgba(201, 201, 201, 0.9); /* Semi-transparent header */
+      border-bottom: 1px solid #ddd;
+      z-index: 1;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 2.5rem;
+      color: #333;
+    }
+
+    p {
+      font-size: 1.2rem;
+      color: #666;
+    }
+
 
     header {
       text-align: center;
       padding: 2rem;
-      background-color: #f4f4f4;
+      background-color: #c9c9c9;
       border-bottom: 1px solid #ddd;
     }
 
@@ -42,21 +85,30 @@
       color: #666;
     }
 
+
+
     .container {
-      max-width: 1200px;
+      max-width: 1700px;
       margin: 2rem auto;
       padding: 1rem;
+      background-color: #ffffff; /* White background for contrast */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+      border-radius: 8px; /* Rounded corners */
     }
-
-    .chart-description {
+        .chart-description {
       text-align: center;
       margin-bottom: 2rem;
       font-size: 1.1rem;
       color: #555;
     }
 
-    #choropleth_map, #Timeseries_graph {
+    #choropleth_map {
       width: 100%;
+      margin-bottom: 3rem;
+    }
+    #Timeseries_graph {
+      width: 100%; /* Make the chart container responsive */
+      max-width: 95%; /* Ensure it does not overflow */
       margin-bottom: 3rem;
     }
 
@@ -65,10 +117,34 @@
         padding: 1rem;
       }
     }
-
+    .divider {
+      border: none;
+      border-top: 2px solid #ddd;
+      margin: 2rem 0; /* Adjust margin for spacing */
+      width: 100%; /* Full-width divider */
+    }
     .content-wrapper {
       padding: 1rem;
     }
+      /* Ensure the columns always stay side by side */
+  .columns {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  /* Set each column to take up 50% of the container width */
+  .column {
+    width: 48%; /* Small gap between columns */
+    padding: 1rem;
+    box-sizing: border-box;
+  }
+
+  /* Optional: Add media query for larger screens if needed */
+  @media (min-width: 768px) {
+    .column {
+      width: 48%; /* Can adjust width if needed on larger screens */
+    }
+  }
   </style>
 
   <title>Exploring Employment and Unemployment Trends in Australia</title>
@@ -81,7 +157,6 @@
     <p>This dashboard visualizes Australia's unemployment trends over time and across regions, offering a closer look at how employment rates vary geographically and historically.</p>
   </header>
 
-  <!-- Main container -->
   <div class="container">
     <!-- Grid layout for responsiveness -->
     <div class="pure-g">
@@ -91,17 +166,51 @@
         <div class="chart-description">
           <p>The choropleth map above highlights the unemployment rates across Australia's states and territories for the selected year. Darker colors represent higher unemployment rates, offering a clear contrast between regions with more challenging labor markets and those with better employment conditions.</p>
         </div>
-      </div>
+    </div>
+  </div>
+</div>
 
-      <!-- Time Series Graph Visualization -->
-      <div class="pure-u-1 pure-u-md-1-2">
-        <div id="Timeseries_graph"></div>
-        <div class="chart-description">
-          <p>This interactive line chart visualizes the historical trend of unemployment rates across Australia. It captures periods of economic fluctuation, allowing you to explore changes in the labor market over time. Use the brush above the chart to zoom into specific time ranges.</p>
-        </div>
+
+
+  <div class="container">
+    <!-- Time Series Graph Visualization -->
+    <div class="pure-u-1 pure-u-md-1-2">
+      <div id="Timeseries_graph"></div>
+      <div class="chart-description">
+        <p>This interactive line chart visualizes the historical trend of unemployment rates across Australia. It captures periods of economic fluctuation, allowing you to explore changes in the labor market over time. Use the brush above the chart to zoom into specific time ranges.</p>
       </div>
     </div>
   </div>
+
+
+  <div class="container">
+    <div class="columns">
+      <!-- Left Column: Paragraph 1 -->
+      <div class="column">
+        <h3>References</h3>
+        <p>The data for this Visualization comes from the Australian Bureau of Statistics</p>
+        <p>
+          <a href="https://www.abs.gov.au/statistics/labour/employment-and-unemployment">https://www.abs.gov.au/statistics/labour/employment-and-unemployment</a>
+        </p>
+        
+      </div>
+  
+      <!-- Right Column: Paragraph 2 -->
+      <div class="column">
+        <h3>Author</h3>
+        <p>Student Name: Jack Zheng</p>
+        <p>Student ID: 32594534</p>
+      </div>
+    </div>
+
+  </div>
+  </div>
+
+
+
+
+
+  
 
   <!-- Vega Embed Scripts for Choropleth Map and Time Series Graph -->
   <script type="text/javascript">
