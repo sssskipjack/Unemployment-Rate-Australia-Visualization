@@ -41,36 +41,17 @@
       max-width: 1600px;
       margin: 2rem auto;
       padding: 1rem;
-      background-color: rgba(255, 255, 255, 0.9); /* Slight transparency to show background */
+      background-color: rgba(255, 255, 255, 0.722); /* Slight transparency to show background */
       box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1); /* Subtle shadow for depth */
       border-radius: 10px; /* Rounded corners */
       z-index: 1;
       position: relative; /* Ensure it stays on top of the background */
     }
-    header {
-      text-align: center;
-      padding: 2rem;
-      background-color: rgba(201, 201, 201, 0.9); /* Semi-transparent header */
-      border-bottom: 1px solid #ddd;
-      z-index: 1;
-    }
-
-    h1 {
-      margin: 0;
-      font-size: 2.5rem;
-      color: #333;
-    }
-
-    p {
-      font-size: 1.2rem;
-      color: #666;
-    }
-
 
     header {
       text-align: center;
       padding: 2rem;
-      background-color: #c9c9c9;
+      background-color: #ffffff;
       border-bottom: 1px solid #ddd;
     }
 
@@ -97,7 +78,7 @@
     }
         .chart-description {
       text-align: center;
-      margin-bottom: 2rem;
+      margin-bottom: 3rem;
       font-size: 1.1rem;
       color: #555;
     }
@@ -171,13 +152,12 @@
 </div>
 
 
-
   <div class="container">
     <!-- Time Series Graph Visualization -->
     <div class="pure-u-1 pure-u-md-1-2">
       <div id="Timeseries_graph"></div>
       <div class="chart-description">
-        <p>This interactive line chart visualizes the historical trend of unemployment rates across Australia. It captures periods of economic fluctuation, allowing you to explore changes in the labor market over time. Use the brush above the chart to zoom into specific time ranges.</p>
+        <p>This interactive time series chart offers a comprehensive view of the unemployment rate fluctuations across Australian states over the past 50 years, revealing the impact of key events such as the 1983 Recession, The Global Financial Crisis, and the COVID-19 Pandemic. Use the scroller to zoom into specific timeframes and compare state-level unemployment trends, to see critical insights into how the Australian labor market evolves over time.</p>
       </div>
     </div>
   </div>
