@@ -1,14 +1,4 @@
 Date,Metric,Value
-2015-02-01,Total Population,18840.0
-2016-02-01,Total Population,19107.4
-2017-02-01,Total Population,19169.7
-2018-02-01,Total Population,19460.8
-2019-02-01,Total Population,19768.4
-2020-02-01,Total Population,20096.0
-2021-02-01,Total Population,20154.9
-2022-02-01,Total Population,20419.2
-2023-02-01,Total Population,20984.8
-2024-02-01,Total Population,21602.0
 2015-02-01,Employed,11647.8
 2016-02-01,Employed,11918.0
 2017-02-01,Employed,11842.0
@@ -19,53 +9,33 @@ Date,Metric,Value
 2022-02-01,Employed,13135.3
 2023-02-01,Employed,13646.0
 2024-02-01,Employed,14031.9
-2015-02-01,Underemployed,1744.1
-2016-02-01,Underemployed,1748.1
-2017-02-01,Underemployed,1811.0
-2018-02-01,Underemployed,1815.2
-2019-02-01,Underemployed,1774.7
-2020-02-01,Underemployed,1925.8
-2021-02-01,Underemployed,1835.4
-2022-02-01,Underemployed,1525.7
-2023-02-01,Underemployed,1560.5
-2024-02-01,Underemployed,1652.7
-2015-02-01,Potential workers,2124.2
-2016-02-01,Potential workers,2059.2
-2017-02-01,Potential workers,2039.2
-2018-02-01,Potential workers,2037.5
-2019-02-01,Potential workers,1950.5
-2020-02-01,Potential workers,2022.0
-2021-02-01,Potential workers,2137.8
-2022-02-01,Potential workers,1786.1
-2023-02-01,Potential workers,1779.6
-2024-02-01,Potential workers,1880.6
-2015-02-01,Discouraged job seekers,106.7
-2016-02-01,Discouraged job seekers,101.0
-2017-02-01,Discouraged job seekers,97.4
-2018-02-01,Discouraged job seekers,99.0
-2019-02-01,Discouraged job seekers,89.1
-2020-02-01,Discouraged job seekers,100.8
-2021-02-01,Discouraged job seekers,109.5
-2022-02-01,Discouraged job seekers,88.7
-2023-02-01,Discouraged job seekers,86.0
-2024-02-01,Discouraged job seekers,73.4
-2015-02-01,Active Job seekers,816.1
-2016-02-01,Active Job seekers,783.8
-2017-02-01,Active Job seekers,772.4
-2018-02-01,Active Job seekers,767.4
-2019-02-01,Active Job seekers,748.6
-2020-02-01,Active Job seekers,761.5
-2021-02-01,Active Job seekers,734.1
-2022-02-01,Active Job seekers,656.0
-2023-02-01,Active Job seekers,672.1
-2024-02-01,Active Job seekers,736.2
-2015-02-01,Unemployed,763.3
-2016-02-01,Unemployed,723.7
-2017-02-01,Unemployed,718.6
-2018-02-01,Unemployed,706.3
-2019-02-01,Unemployed,661.0
-2020-02-01,Unemployed,676.2
-2021-02-01,Unemployed,793.2
-2022-02-01,Unemployed,547.0
-2023-02-01,Unemployed,502.7
-2024-02-01,Unemployed,554.4
+2015-02-01,Discouraged job seekers (Unemployed),106.7
+2016-02-01,Discouraged job seekers (Unemployed),101.0
+2017-02-01,Discouraged job seekers (Unemployed),97.4
+2018-02-01,Discouraged job seekers (Unemployed),99.0
+2019-02-01,Discouraged job seekers (Unemployed),89.1
+2020-02-01,Discouraged job seekers (Unemployed),100.8
+2021-02-01,Discouraged job seekers (Unemployed),109.5
+2022-02-01,Discouraged job seekers (Unemployed),88.7
+2023-02-01,Discouraged job seekers (Unemployed),86.0
+2024-02-01,Discouraged job seekers (Unemployed),73.4
+2015-02-01,Active Job seekers (Unemployed),816.1
+2016-02-01,Active Job seekers (Unemployed),783.8
+2017-02-01,Active Job seekers (Unemployed),772.4
+2018-02-01,Active Job seekers (Unemployed),767.4
+2019-02-01,Active Job seekers (Unemployed),748.6
+2020-02-01,Active Job seekers (Unemployed),761.5
+2021-02-01,Active Job seekers (Unemployed),734.1
+2022-02-01,Active Job seekers (Unemployed),656.0
+2023-02-01,Active Job seekers (Unemployed),672.1
+2024-02-01,Active Job seekers (Unemployed),736.2
+2015-02-01,Not potential workers,5068.0
+2016-02-01,Not potential workers,5130.2
+2017-02-01,Not potential workers,5288.5
+2018-02-01,Not potential workers,5230.2
+2019-02-01,Not potential workers,5325.2
+2020-02-01,Not potential workers,5385.0
+2021-02-01,Not potential workers,5357.8
+2022-02-01,Not potential workers,5497.9
+2023-02-01,Not potential workers,5559.1
+2024-02-01,Not potential workers,5689.6
