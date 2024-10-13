@@ -38,7 +38,11 @@
     "facet": {
         "field": "Age Range",
         "type": "nominal",
-        "title": null
+        "title": null,
+        "header": {
+            "labelFontSize": 16, 
+            "labelFont": "Roboto"
+        }
         
     },
     "columns": 4,
@@ -49,7 +53,7 @@
             {
                 "mark": {
                     "type": "arc",
-                    "innerRadius": 50,
+                    "innerRadius": 45,
                     "outerRadius": 90,
                     "stroke": "#fff"
                 },

@@ -25,14 +25,20 @@
       "type": "temporal",
       "title": "Year",
       "axis": {
-        "format": "%Y"
+        "format": "%Y",
+        "labelFontSize": 12,
+        "titleFontSize": 14
       }
     },
     "y": {
       "aggregate": "sum",
       "field": "Value",
       "type": "quantitative",
-      "title": "Number of People Surveyed"
+      "title": "Number of People Surveyed",
+      "axis": {
+        "labelFontSize": 12,
+        "titleFontSize": 14
+      }
     },
     "color": {
       "field": "Metric",
@@ -40,6 +46,10 @@
       "title": "Employment Metric",
       "scale": {
         "scheme": "blueorange"
+      },
+      "legend": {
+        "labelFontSize": 12,
+        "titleFontSize": 14
       }
     },
     "order": {

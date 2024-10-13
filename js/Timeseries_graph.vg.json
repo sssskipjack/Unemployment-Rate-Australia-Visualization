@@ -163,9 +163,11 @@
             "grid": false,
             "labelFont": "Roboto",
             "labelFontSize": 14,
-            "labelColor": "#333"
+            "labelColor": "#333",
+            "titleFontSize": 14
           },
           "title": "Average Unemployment Rate (%)"
+          
         },
         "tooltip": [
           {
