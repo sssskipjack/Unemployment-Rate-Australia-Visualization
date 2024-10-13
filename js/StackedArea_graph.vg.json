@@ -39,7 +39,7 @@
       "type": "nominal",
       "title": "Employment Metric",
       "scale": {
-        "scheme": "tableau10"
+        "scheme": "redgrey"
       }
     },
     "tooltip": [

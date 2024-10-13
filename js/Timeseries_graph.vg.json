@@ -5,9 +5,7 @@
     "font": "Roboto",
     "fontSize": 16,
     "anchor": "middle",
-    "color": "#333",
-    "subtitle": " ",
-    "subtitlePadding": 15
+    "color": "#333"
   },
   "vconcat": [
     {
