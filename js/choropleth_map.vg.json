@@ -7,8 +7,8 @@
     "anchor": "middle",
     "color": "#333"
   },
-  "width": "container",
-  "height": 500,
+  "width": 600,
+  "height": 600,
   "params": [
     {
       "name": "Year_selection",

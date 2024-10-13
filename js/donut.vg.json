@@ -1,0 +1,127 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": {
+      "text": "Unemployment Reasons by Age Range (Australia)",
+      "anchor": "middle"
+    },
+    "description": "Double nested donut charts for unemployment reasons by age range, using Tableau 20 colors and shared legends.",
+    "data": {
+      "url": "https://raw.githubusercontent.com/sssskipjack/Unemployment-Rate-Australia-Visualization/main/data/wrangledReasons.csv"
+    },
+    "transform": [
+      {
+        "calculate": "'20' + substring(datum.Month, 4)",
+        "as": "Year"
+      },
+      {
+        "filter": "datum.Year == year"
+      },
+      {
+        "calculate": "datum.Classification == 'Discouraged job seekers' ? 1 : datum.Classification == 'Personal reasons' ? 2 : datum.Classification == 'Family reasons' ? 3 : 4",
+        "as": "ClassificationOrder"
+      },
+      {
+        "calculate": "datum.Category == 'Considered too young or too old by employers' ? 1 : datum.Category == 'Believes ill health or disability discourages employers' ? 2 : datum.Category == 'Lacked necessary skills, education or experience' ? 3 : datum.Category == 'Cultural background or language difficulties' ? 4 : datum.Category == 'No jobs in locality, line of work or no jobs at all' ? 5 : datum.Category == 'No jobs in suitable hours' ? 6 : datum.Category == 'Own short-term illness or injury' ? 7 : datum.Category == 'Own long-term health condition or disability' ? 8 : datum.Category == 'Attending an educational institution' ? 9 : datum.Category == 'Had no need or want to work' ? 10 : datum.Category == 'Working in an unpaid voluntary job' ? 11 : datum.Category == 'Problems with access to transport' ? 12 : datum.Category == 'Moved house or holidays' ? 13 : datum.Category == 'Caring for ill or elderly person or family member' ? 14 : datum.Category == 'Childcare' ? 15 : datum.Category == 'Other family considerations' ? 16 : datum.Category == 'Other reasons' ? 17 : datum.Category == 'Did not know' ? 18 : 19",
+        "as": "CategoryOrder"
+      }
+    ],
+    "params": [
+      {
+        "name": "year",
+        "value": 2015,
+        "bind": {
+          "input": "range",
+          "min": 2015,
+          "max": 2024,
+          "step": 1,
+          "name": "Select Year: "
+        }
+      }
+    ],
+    "facet": {
+      "field": "Age Range",
+      "type": "nominal",
+      "title": null
+    },
+    "columns": 4,
+    "spec": {
+      "width": 350,
+      "height": 290,
+      "resolve": {
+        "scale": {"color": "shared"}
+      },
+      "layer": [
+        {
+          "mark": {
+            "type": "arc",
+            "innerRadius": 50,
+            "outerRadius": 90,
+            "stroke": "#fff"
+          },
+          "encoding": {
+            "theta": {
+              "aggregate": "sum",
+              "field": "Percentage %",
+              "type": "quantitative",
+              "stack": true,
+              "sort": {
+                "field": "ClassificationOrder",
+                "order": "ascending"
+              }
+            },
+            "color": {
+              "field": "Classification",
+              "type": "nominal",
+              "scale": {"scheme": "category20"},
+              "legend": {"title": "Classification"}
+            },
+            "order": {"field": "ClassificationOrder", "type": "quantitative"},
+            "tooltip": [
+              {"field": "Classification", "type": "nominal"},
+              {
+                "field": "Percentage %",
+                "aggregate": "sum",
+                "type": "quantitative",
+                "format": ".1f",
+                "title": "Percentage (%)"
+              }
+            ]
+          }
+        },
+        {
+          "mark": {
+            "type": "arc",
+            "innerRadius": 90,
+            "stroke": "#fff"
+          },
+          "encoding": {
+            "theta": {
+              "field": "Percentage %",
+              "type": "quantitative",
+              "stack": true,
+              "sort": {
+                "field": "CategoryOrder",
+                "order": "ascending"
+              }
+            },
+            "color": {
+              "field": "Category",
+              "type": "nominal",
+              "legend": {"title": "Category"}
+            },
+            "order": {"field": "CategoryOrder", "type": "quantitative"},
+            "tooltip": [
+              {"field": "Category", "type": "nominal"},
+              {
+                "field": "Percentage %",
+                "type": "quantitative",
+                "format": ".1f",
+                "title": "Percentage (%)"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+  
