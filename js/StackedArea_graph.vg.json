@@ -1,0 +1,75 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": {
+      "text": "Stacked Area Chart of Employment Metrics Over Time in Australia",
+      "font": "Arial",
+      "fontSize": 16,
+      "anchor": "middle",
+      "color": "#333"
+    },
+  
+    "width": "600",
+    "height": "600",
+    "description": "Stacked area chart of employment metrics over time in Australia",
+    "data": {
+      "url": "https://raw.githubusercontent.com/sssskipjack/Unemployment-Rate-Australia-Visualization/refs/heads/main/data/EmploymentInformationLong.csv",
+      "format": {
+        "type": "csv"
+      }
+    },
+    "mark": "area",
+    "encoding": {
+      "x": {
+        "field": "Date",
+        "type": "temporal",
+        "title": "Year",
+        "axis": {
+          "format": "%Y"
+        }
+      },
+      "y": {
+        "aggregate": "sum",
+        "field": "Value",
+        "type": "quantitative",
+        "title": "Number of People"
+      },
+      "color": {
+        "field": "Metric",
+        "type": "nominal",
+        "title": "Employment Metric",
+        "scale": {
+          "domain": [
+            "Employed",
+            "Discouraged job seekers (Unemployed)",
+            "Active Job seekers (Unemployed)",
+            "Not potential workers"
+          ],
+          "range": [
+            "#60bd68",
+            "#ca472f",
+            "#0b84a5",
+            "#faa43a"
+          ]
+        }
+      },
+      "tooltip": [
+        {
+          "field": "Date",
+          "type": "temporal",
+          "title": "Year",
+          "format": "%Y"
+        },
+        {
+          "field": "Metric",
+          "type": "nominal",
+          "title": "Metric"
+        },
+        {
+          "field": "Value",
+          "type": "quantitative",
+          "title": "Value"
+        }
+      ]
+    }
+  }
+  

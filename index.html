@@ -162,7 +162,27 @@
     </div>
   </div>
 
+  <div class = "container">
 
+    <div class="columns">
+      <div class="column">
+        <div class="pure-u-1 pure-u-md-1-2">
+          <div id="StackedArea"></div>
+          <div class="chart-description">
+            <p>This interactive time series chart offers a comprehensive view of the unemployment rate fluctuations across Australian states over the past 50 years, revealing the impact of key events such as the 1983 Recession, The Global Financial Crisis, and the COVID-19 Pandemic. Use the scroller to zoom into specific timeframes and compare state-level unemployment trends, to see critical insights into how the Australian labor market evolves over time.</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Right Column: Paragraph 2 -->
+      <div class="column">
+        <h3>Graph 2</h3>
+
+      </div>
+
+    </div>
+
+  </div>
   <div class="container">
     <div class="columns">
       <!-- Left Column: Paragraph 1 -->
@@ -192,16 +212,18 @@
 
   
 
-  <!-- Vega Embed Scripts for Choropleth Map and Time Series Graph -->
+  <!-- Vega Embed Scripts graphs -->
   <script type="text/javascript">
     var specChoropleth = "js/choropleth_map.vg.json";
     vegaEmbed('#choropleth_map', specChoropleth).then(function(result) {
-      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
     }).catch(console.error);
 
     var specTimeseries = "js/Timeseries_graph.vg.json";
     vegaEmbed('#Timeseries_graph', specTimeseries).then(function(result) {
-      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+    }).catch(console.error);
+
+    var specTimeseries = "js/StackedArea_graph.vg.json";
+    vegaEmbed('#StackedArea', specTimeseries).then(function(result) {
     }).catch(console.error);
   </script>
 
