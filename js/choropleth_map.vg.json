@@ -30,28 +30,6 @@
   "layer": [
     {
       "data": {
-        "url": "https://raw.githubusercontent.com/sssskipjack/Unemployment-Rate-Australia-Visualization/main/js/georef-australia-state-millesime.json",
-        "format": {
-          "type": "topojson",
-          "feature": "georef-australia-state-millesime"
-        }
-      },
-      "mark": {
-        "type": "geoshape",
-        "fill": "#ddd",
-        "stroke": "white",
-        "strokeWidth": 1
-      },
-      "encoding": {
-        "tooltip": {
-          "field": "properties.ste_name",
-          "type": "nominal",
-          "title": "State"
-        }
-      }
-    },
-    {
-      "data": {
         "url": "https://raw.githubusercontent.com/sssskipjack/Unemployment-Rate-Australia-Visualization/refs/heads/main/data/unemploymentRateTimeSeries.csv",
         "format": {"type": "csv"}
       },
