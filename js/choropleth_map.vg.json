@@ -2,13 +2,15 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
     "text": "Unemployment Rates in Australia by State (1978-2024)",
-    "font": "Arial",
+    "font": "Roboto",
     "fontSize": 16,
     "anchor": "middle",
-    "color": "#333"
+    "color": "#333",
+    "subtitle": " ",
+    "subtitlePadding": 15
   },
-  "width": 600,
-  "height": 600,
+  "width": "container",
+  "height": 360,
   "params": [
     {
       "name": "Year_selection",
@@ -18,9 +20,7 @@
         "min": 1978,
         "max": 2024,
         "step": 1,
-        "name": "Select Year: ",
-        "labelFont": "Arial",
-        "labelFontSize": 12
+        "name": "Select Year: "
       }
     }
   ],

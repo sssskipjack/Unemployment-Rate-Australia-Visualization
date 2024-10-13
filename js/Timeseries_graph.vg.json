@@ -2,10 +2,12 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
     "text": "Unemployment Rates Over Time in Australia by State",
-    "font": "Arial",
+    "font": "Roboto",
     "fontSize": 16,
     "anchor": "middle",
-    "color": "#333"
+    "color": "#333",
+    "subtitle": " ",
+    "subtitlePadding": 15
   },
   "vconcat": [
     {

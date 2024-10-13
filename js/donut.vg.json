@@ -2,10 +2,12 @@
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "title": {
         "text": "Sunburst Charts for Unemployment Reasons by Age Range",
-        "font": "Arial",
+        "font": "Roboto",
         "fontSize": 16,
         "anchor": "middle",
-        "color": "#333"
+        "color": "#333",
+        "subtitle": " ",
+        "subtitlePadding": 20
       },
     "description": "Sunburst charts for unemployment reasons by age range, with annotations.",
     "data": {
