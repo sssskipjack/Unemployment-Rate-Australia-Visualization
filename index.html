@@ -1,214 +1,244 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <!-- Import Vega & Vega-Lite -->
-  <script src="https://cdn.jsdelivr.net/npm/vega@5.22.1"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.5.0"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.21.0"></script>
+    <!-- Import Vega & Vega-Lite -->
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.22.1"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.5.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.21.0"></script>
 
-  <!-- Nice sans-serif font -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
-  
-  <!-- Pure.css -->
-  <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.6/build/pure-min.css">
+    <!-- Nice sans-serif font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
 
-  <!-- Apply the font to the entire page -->
-  <style>
-    body {
-      font-family: 'Roboto', sans-serif;
-      margin: 0;
-      padding: 0;
-      line-height: 1.6;
-    }
+    <!-- Pure.css -->
+    <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.6/build/pure-min.css">
 
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: url('Melburnian_Skyline.jpg') no-repeat center center fixed;
-      background-size: cover;
-      filter: blur(8px); 
-      z-index: -1; 
-    }
+    <!-- Apply the font to the entire page -->
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f7f6;
+        }
 
-    header {
-      text-align: center;
-      padding: 2rem;
-      background-color: #ffffff;
-      border-bottom: 1px solid #ddd;
-    }
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('Melburnian_Skyline.jpg') no-repeat center center fixed;
+            background-size: cover;
+            filter: blur(4px);
+            z-index: -1;
+        }
 
-    h1 {
-      margin: 0;
-      font-size: 2.5rem;
-      color: #333;
-    }
+        header {
+            text-align: center;
+            padding: 2rem;
+            background-color: #565c62;
+            color: #f4f7f6;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 0 0 15px 15px;
+        }
 
-    p {
-      font-size: 1.2rem;
-      color: #666;
-    }
+        header h1 {
+            margin: 0;
+            font-size: 2.8rem;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+            color: #fff;
+        }
 
-    .container {
-      max-width: 1700px;
-      margin: 2rem auto;
-      padding: 1rem;
-      background-color: #ffffff; 
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      border-radius: 8px; 
-    }
+        header p {
+            font-size: 1.1rem;
+            margin-top: 0.5rem;
+            letter-spacing: 0.5px;
+            color: #bbb;
+        }
+
+        .container {
+            max-width: 1700px;
+            margin: 2rem auto;
+            padding: 1rem;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+        }
+
         .chart-description {
-      text-align: center;
-      margin-bottom: 3rem;
-      font-size: 1.1rem;
-      color: #555;
-    }
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 1rem;
+            color: #555;
+        }
 
-    #choropleth_map {
-      width: 100%;
-      margin-bottom: 3rem;
-    }
-    #Timeseries_graph {
-      width: 100%; 
-      max-width: 95%; 
-      margin-bottom: 3rem;
-    }
-    
-    #StackedArea{
-      width: 100%;
-      margin-bottom: 3rem;
-    }
-    #donut{
-      width: 100%;
-      margin-bottom: 3rem;
-    }
+        #Timeseries_graph {
+            width: 100%;
+            max-width: 90%;
+        }
 
-    @media (min-width: 768px) {
-      .pure-g [class*="pure-u"] {
-        padding: 1rem;
-      }
-    }
-    .divider {
-      border: none;
-      border-top: 2px solid #ddd;
-      margin: 2rem 0; 
-      width: 100%; 
-    }
-    .content-wrapper {
-      padding: 1rem;
-    }
-  .columns {
-    display: flex;
-    justify-content: space-between;
-  }
+        #choropleth_map,
+        #StackedArea,
+        #donut {
+            width: 100%;
+            margin-bottom: 3rem;
+        }
 
-  .column {
-    width: 48%; /* Small gap between columns */
-    padding: 1rem;
-    box-sizing: border-box;
-  }
+        .columns {
+            display: flex;
+            justify-content: space-between;
+        }
 
-  </style>
+        .column {
+            width: 48%;
+            padding: 1rem;
+            box-sizing: border-box;
+        }
 
-  <title>Employment In Australia </title>
+        .footer {
+            background-color: #1d1f21;
+            color: #f4f7f6;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.2);
+            border-top: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer h3 {
+            color: #fff;
+            margin-bottom: 1rem;
+        }
+
+        .footer p {
+            color: #bbb;
+            font-size: 1rem;
+        }
+
+        .footer a {
+            color: #f4f7f6;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            color: #ff6600;
+        }
+
+        /* Subtle animations */
+        .container,
+        header {
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+
+    <title>Employment In Australia</title>
 </head>
+
 <body>
 
-  <!-- Page heading -->
-  <header>
-    <h1>Exploring Employment and Unemployment Trends in Australia across the years.</h1>
-    <p>This page visualizes Australia's unemployment trends over time and across regions, offering a closer look at how employment rates vary over the years.</p>
-  </header>
+    <!-- Page heading -->
+    <header>
+        <h1>Exploring Employment and Unemployment Trends in Australia</h1>
+        <p>This page visualizes Australia's unemployment trends over time and across regions, offering a closer look at how employment rates vary over the years.</p>
+    </header>
 
-  <div class="container">
-    <!-- Time Series Graph Visualization -->
-    <div class="pure-u-1 pure-u-md-1-2">
-      <div id="Timeseries_graph"></div>
-      <div class="chart-description">
-        <p>This interactive time series chart offers a comprehensive view of the unemployment rate fluctuations across Australian states over the past 50 years, The scroller shows the average unemployment across the whole of Australia, revealing the impact of key events such as the 1983 Recession, The Global Financial Crisis, and the COVID19 Pandemic. Use the scroller to zoom into specific timeframes and compare state level unemployment trends, to see critical insights into how the Australian labor market evolves over time.</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="container">
-    <div class="pure-u-1 pure-u-md-1-2">
-      <div id="donut"></div>
-      <div class="chart-description">
-        <p>This sunburst chart breaks down the reasons for unemployment across different age groups. Inner sections highlight broader categories and for that respective category, the outer sections delves into more specific reasons explaining the reason for unemployment. This chart offers a deeper understanding of the factors which influence unemployment across the various age ranges, adding a human element to the broader labor trends. </p>
-      </div>
-    </div>
-  </div>
-  
-  <div class = "container">
-    <div class="columns">
-      <div class="column">
+    <div class="container">
+        <!-- Time Series Graph Visualization -->
         <div class="pure-u-1 pure-u-md-1-2">
-          <div id="StackedArea"></div>
-          <div class="chart-description">
-            <p>Stacked Area Chart - Employment Metrics Over Time: The stacked area chart visualizes the composition of various employment categories such as employed, discouraged job seekers, and active job seekers overtime. This allows you to see trends not only in unemployment but also in broader labor market participation. It illustrates the flow between different employment statuses and how major events shifted people between being employed, unemployed, or not potential workers</p>
-          </div>
+            <div id="Timeseries_graph"></div>
+            <div class="chart-description">
+                <p>This interactive time series chart offers a comprehensive view of the unemployment rate fluctuations across Australian states over the past 50 years. Use the scroller to zoom into specific timeframes and compare state-level unemployment trends, revealing insights into the Australian labor market's evolution over time.</p>
+            </div>
         </div>
-      </div>
-      
-      <!-- Right Column: Paragraph 2 -->
-      <div class="column">
+    </div>
+
+    <div class="container">
         <div class="pure-u-1 pure-u-md-1-2">
-          <div id="choropleth_map"></div>
-          <div class="chart-description">
-            <p>This choropleth map provides a geographic perspective on unemployment, highlighting regional disparities in Australia's unemployment rates. Darker shades represent higher unemployment, allowing for a clear visual distinction between areas with more robust labor markets and those experiencing economic difficulties. The map is dynamic, with users able to select different years to see how unemployment distribution has changed over time, particularly around events like the 1990s Recession or the COVID19 pandemic</p>
-          </div>
-      </div>
-      </div>
-
+            <div id="donut"></div>
+            <div class="chart-description">
+                <p>This sunburst chart breaks down the reasons for unemployment across different age groups, offering deeper insight into the factors influencing unemployment across various age ranges. The outer sections delve into more specific reasons for unemployment.</p>
+            </div>
+        </div>
     </div>
 
-  </div>
+    <div class="container">
+        <div class="columns">
+            <div class="column">
+                <div class="pure-u-1 pure-u-md-1-2">
+                    <div id="StackedArea"></div>
+                    <div class="chart-description">
+                        <p>Stacked Area Chart: This chart visualizes various employment categories such as employed, discouraged job seekers, and active job seekers over time, allowing for a more in-depth analysis of the flow between different employment statuses.</p>
+                    </div>
+                </div>
+            </div>
 
-  <div class="container">
-    <div class="columns">
-      <!-- Left Column: Paragraph 1 -->
-      <div class="column">
-        <h3>References</h3>
-        <p>The data for this Visualization comes from the Australian Bureau of Statistics</p>
-        <p>
-          <a href="https://www.abs.gov.au/statistics/labour/employment-and-unemployment">https://www.abs.gov.au/statistics/labour/employment-and-unemployment</a>
-        </p>
-        
-      </div>
-  
-      <!-- Right Column: Paragraph 2 -->
-      <div class="column">
-        <h3>Author</h3>
-        <p>Student Name: Jack Zheng</p>
-        <p>Student ID: 32594534</p>
-      </div>
+            <div class="column">
+                <div class="pure-u-1 pure-u-md-1-2">
+                    <div id="choropleth_map"></div>
+                    <div class="chart-description">
+                        <p>Choropleth Map: A geographic perspective on unemployment rates across Australia. Darker shades represent higher unemployment, with users able to view trends across different years.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
-  </div>
-  <!-- Vega Embed Scripts graphs -->
-  <script type="text/javascript">
-    var specChoropleth = "js/choropleth_map.vg.json";
-    vegaEmbed('#choropleth_map', specChoropleth).then(function(result) {
-    }).catch(console.error);
+    <!-- Footer -->
+    <div class="footer">
+        <div class="columns">
+            <div class="column">
+                <h3>References</h3>
+                <p>The data for this visualization comes from the Australian Bureau of Statistics: <a href="https://www.abs.gov.au/statistics/labour/employment-and-unemployment">ABS Labour Statistics</a></p>
+                <p>Background jpg by <a href="//commons.wikimedia.org/w/index.php?title=User:Melbpal&amp;action=edit&amp;redlink=1" class="new" title="User:Melbpal (page does not exist)">Melbpal</a> - <span class="int-own-work" lang="en">Own work</span>, <a href="https://creativecommons.org/licenses/by-sa/4.0" title="Creative Commons Attribution-Share Alike 4.0">CC BY-SA 4.0</a>, <a href="https://commons.wikimedia.org/w/index.php?curid=90052663">Link</a></p>
+              </div>W
 
-    var specTimeseries = "js/Timeseries_graph.vg.json";
-    vegaEmbed('#Timeseries_graph', specTimeseries).then(function(result) {
-    }).catch(console.error);
+            <div class="column">
+                <h3>Author</h3>
+                <p>Student Name: Jack Zheng</p>
+                <p>Student ID: 32594534</p>
+            </div>
+        </div>
+        <p>&copy; 2024 Jack Zheng | <a href="https://github.com/sssskipjack"> Github</a></p>
+    </div>
 
-    var specStackedArea = "js/StackedArea_graph.vg.json";
-    vegaEmbed('#StackedArea', specStackedArea).then(function(result) {
-    }).catch(console.error);
+    <!-- Vega Embed Scripts graphs -->
+    <script type="text/javascript">
+        var specChoropleth = "js/choropleth_map.vg.json";
+        vegaEmbed('#choropleth_map', specChoropleth, { "actions": false }).then(function (result) {
+        }).catch(console.error);
 
-    var specDonut = "js/donut.vg.json";
-    vegaEmbed('#donut', specDonut).then(function(result) {
-    }).catch(console.error);
+        var specTimeseries = "js/Timeseries_graph.vg.json";
+        vegaEmbed('#Timeseries_graph', specTimeseries, { "actions": false }).then(function (result) {
+        }).catch(console.error);
 
-  </script>
+        var specStackedArea = "js/StackedArea_graph.vg.json";
+        vegaEmbed('#StackedArea', specStackedArea, { "actions": false }).then(function (result) {
+        }).catch(console.error);
+
+        var specDonut = "js/donut.vg.json";
+        vegaEmbed('#donut', specDonut, { "actions": false }).then(function (result) {
+        }).catch(console.error);
+    </script>
 
 </body>
+
 </html>

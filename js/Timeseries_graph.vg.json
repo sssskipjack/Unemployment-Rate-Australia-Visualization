@@ -151,7 +151,7 @@
             "title": "",
             "format": "%Y",
             "labelFont": "Roboto",
-            "labelFontSize": 14,
+            "labelFontSize": 12,
             "labelColor": "#333"
           }
         },
