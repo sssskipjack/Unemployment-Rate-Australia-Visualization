@@ -1,112 +1,132 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "description": "Double nested donut charts for unemployment reasons by age range, with annotations.",
+    "title": {
+        "text": "Sunburst Charts for Unemployment Reasons by Age Range",
+        "font": "Arial",
+        "fontSize": 16,
+        "anchor": "middle",
+        "color": "#333"
+      },
+    "description": "Sunburst charts for unemployment reasons by age range, with annotations.",
     "data": {
-      "url": "https://raw.githubusercontent.com/sssskipjack/Unemployment-Rate-Australia-Visualization/refs/heads/main/data/wrangledReasons.csv"
+        "url": "https://raw.githubusercontent.com/sssskipjack/Unemployment-Rate-Australia-Visualization/refs/heads/main/data/wrangledReasons.csv"
     },
     "transform": [
-      {
-        "calculate": "'20' + substring(datum.Month, 4)",
-        "as": "Year"
-      },
-      {
-        "filter": "datum.Year == year"
-      }
-    ],
-    "params": [
-      {
-        "name": "year",
-        "value": "2015",
-        "bind": {
-          "input": "select",
-          "options": [
-            "2015",
-            "2016",
-            "2017",
-            "2018",
-            "2019",
-            "2020",
-            "2021",
-            "2022",
-            "2023",
-            "2024"
-          ],
-          "name": "Select Year: "
-        }
-      }
-    ],
-    "facet": {
-      "field": "Age Range",
-      "type": "nominal",
-      "title": null
-    },
-    "columns": 2,
-    "spec": {
-      "layer": [
         {
-          "mark": {
-            "type": "arc",
-            "innerRadius": 50,
-            "outerRadius": 90,
-            "stroke": "#fff"
-          },
-          "encoding": {
-            "theta": {
-              "aggregate": "sum",
-              "field": "Percentage %",
-              "type": "quantitative",
-              "stack": true
-            },
-            "color": {
-              "field": "Classification",
-              "type": "nominal",
-              "legend": {"title": "Classification and Category"}
-            },
-            "order": {"field": "Classification", "type": "nominal"},
-            "tooltip": [
-              {"field": "Classification", "type": "nominal"},
-              {
-                "field": "Percentage %",
-                "aggregate": "sum",
-                "type": "quantitative",
-                "format": ".1f",
-                "title": "Percentage (%)"
-              }
-            ]
-          }
+            "calculate": "'20' + substring(datum.Month, 4)",
+            "as": "Year"
         },
         {
-          "mark": {
-            "type": "arc",
-            "innerRadius": 90,
-            "stroke": "#fff"
-          },
-          "encoding": {
-            "theta": {
-              "field": "Percentage %",
-              "type": "quantitative",
-              "stack": true
-            },
-            "color": {
-              "field": "Classification",
-              "type": "nominal",
-              "legend": null
-            },
-            "detail": {"field": "Category"},
-            "order": {"field": "Classification", "type": "nominal"},
-            "tooltip": [
-              {"field": "Category", "type": "nominal"},
-              {
-                "field": "Percentage %",
-                "type": "quantitative",
-                "format": ".1f",
-                "title": "Percentage (%)"
-              }
-            ]
-          }
+            "filter": "datum.Year == year"
         }
-  
-      ]
+    ],
+    "params": [
+        {
+            "name": "year",
+            "value": "2015",
+            "bind": {
+                "input": "range",
+                "min": 2015,
+                "max": 2024,
+                "step": 1,
+                "name": "Select Year: "
+            }
+        }
+    ],
+    "facet": {
+        "field": "Age Range",
+        "type": "nominal",
+        "title": null
+    },
+    "columns": 4,
+    "spec": {
+        "width": 350,
+        "height": 300,
+        "layer": [
+            {
+                "mark": {
+                    "type": "arc",
+                    "innerRadius": 50,
+                    "outerRadius": 90,
+                    "stroke": "#fff"
+                },
+                "encoding": {
+                    "theta": {
+                        "aggregate": "sum",
+                        "field": "Percentage %",
+                        "type": "quantitative",
+                        "stack": true
+                    },
+                    "color": {
+                        "field": "Classification",
+                        "type": "nominal",
+                        "legend": {
+                            "title": "Classification and Category"
+                        },
+                        "scale": {
+                            "scheme": "tableau20"
+                        }
+                    },
+                    "order": {
+                        "field": "Classification",
+                        "type": "nominal"
+                    },
+                    "tooltip": [
+                        {
+                            "field": "Classification",
+                            "type": "nominal"
+                        },
+                        {
+                            "field": "Percentage %",
+                            "aggregate": "sum",
+                            "type": "quantitative",
+                            "format": ".1f",
+                            "title": "Percentage (%)"
+                        }
+                    ]
+                }
+            },
+            {
+                "mark": {
+                    "type": "arc",
+                    "innerRadius": 90,
+                    "stroke": "#fff"
+                },
+                "encoding": {
+                    "theta": {
+                        "field": "Percentage %",
+                        "type": "quantitative",
+                        "stack": true
+                    },
+                    "color": {
+                        "field": "Classification",
+                        "type": "nominal",
+                        "legend": null,
+                        "scale": {
+                            "scheme": "tableau20"
+                        }
+                    },
+                    "detail": {
+                        "field": "Category"
+                    },
+                    "order": {
+                        "field": "Classification",
+                        "type": "nominal"
+                    },
+                    "tooltip": [
+                        {
+                            "field": "Category",
+                            "type": "nominal"
+                        },
+                        {
+                            "field": "Percentage %",
+                            "type": "quantitative",
+                            "format": ".1f",
+                            "title": "Percentage (%)"
+                        }
+                    ]
+                }
+            }
+        ]
     }
-  }
-  
+}
