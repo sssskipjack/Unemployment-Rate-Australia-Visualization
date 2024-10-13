@@ -106,15 +106,6 @@
       }
     },
     {
-      "data": {
-        "values": [
-          {"Date": "1983-03-01", "Event": "1983 Recession"},
-          {"Date": "1990-01-01", "Event": "Early 1990s Recession"},
-          {"Date": "2000-09-15", "Event": "Sydney Olympics"},
-          {"Date": "2008-09-15", "Event": "Global Financial Crisis"},
-          {"Date": "2020-03-01", "Event": "COVID-19 Pandemic"}
-        ]
-      },
       "transform": [
         {"calculate": "year(datum.Date)", "as": "event_year"},
         {"filter": "datum.event_year == Year_selection"}
@@ -129,14 +120,7 @@
         "fontWeight": "bold",
         "color": "#333",
         "angle": 0,
-        "tooltip": null,
-        "background": {
-          "fill": "#f9f9f9",
-          "stroke": "#ccc",
-          "strokeWidth": 1,
-          "cornerRadius": 4
-        },
-        "padding": 5
+        "tooltip": null
       },
       "encoding": {
         "x": {"value": 20},

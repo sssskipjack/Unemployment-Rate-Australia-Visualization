@@ -3,7 +3,7 @@
   "title": {
     "text": "Unemployment Rates Over Time in Australia by State",
     "font": "Roboto",
-    "fontSize": 16,
+    "fontSize": 20,
     "anchor": "middle",
     "color": "#333"
   },
@@ -24,10 +24,10 @@
               "type": "quantitative",
               "title": "Unemployment Rate (%)",
               "axis": {
-                "titleFont": "Arial",
+                "titleFont": "Roboto",
                 "titleFontSize": 14,
-                "labelFont": "Arial",
-                "labelFontSize": 12,
+                "labelFont": "Roboto",
+                "labelFontSize": 14,
                 "labelColor": "#333"
               }
             },
@@ -35,10 +35,10 @@
               "field": "State",
               "type": "nominal",
               "legend": {
-                "titleFont": "Arial",
-                "titleFontSize": 12,
-                "labelFont": "Arial",
-                "labelFontSize": 12,
+                "titleFont": "Roboto",
+                "titleFontSize": 14,
+                "labelFont": "Roboto",
+                "labelFontSize": 14,
                 "labelColor": "#333"
               }
             },
@@ -62,7 +62,7 @@
         {
           "mark": {
             "type": "rule",
-            "color": "#d62728",
+            "color": "#b8b7b7",
             "strokeWidth": 2,
             "strokeDash": [5,5],
             "opacity": 0.7
@@ -87,15 +87,9 @@
             "align": "center",
             "dx": 0,
             "dy": 250,  
-            "color": "#d62728",
+            "color": "#767171",
             "fontSize": 12,
-            "fontWeight": "bold",
-            "background": {
-              "fill": "white",
-              "opacity": 0.8,
-              "cornerRadius": 3,
-              "padding": 2
-            }
+            "fontWeight": "bold"
           },
           "data": {
             "values": [
@@ -121,8 +115,8 @@
             "title": "",
             "tickCount": 5,
             "grid": false,
-            "labelFont": "Arial",
-            "labelFontSize": 12,
+            "labelFont": "Roboto",
+            "labelFontSize": 14,
             "labelColor": "#333"
           }
         }
@@ -134,8 +128,8 @@
       "mark": "line",
       "title": {
         "text": "Zoom into Specific Timeframes",
-        "font": "Arial",
-        "fontSize": 14,
+        "font": "Roboto",
+        "fontSize": 18,
         "anchor": "middle",
         "color": "#333"
       },
@@ -156,8 +150,8 @@
           "axis": {
             "title": "",
             "format": "%Y",
-            "labelFont": "Arial",
-            "labelFontSize": 12,
+            "labelFont": "Roboto",
+            "labelFontSize": 14,
             "labelColor": "#333"
           }
         },
@@ -167,8 +161,8 @@
           "axis": {
             "tickCount": 3,
             "grid": false,
-            "labelFont": "Arial",
-            "labelFontSize": 12,
+            "labelFont": "Roboto",
+            "labelFontSize": 14,
             "labelColor": "#333"
           },
           "title": "Average Unemployment Rate (%)"
@@ -192,10 +186,10 @@
     }
   ],
   "config": {
-    "title": {"font": "Arial", "fontSize": 16, "color": "#333"},
+    "title": {"font": "Roboto", "fontSize": 16, "color": "#333"},
     "axis": {
-      "labelFont": "Arial",
-      "labelFontSize": 12,
+      "labelFont": "Roboto",
+      "labelFontSize": 14,
       "labelColor": "#333"
     }
   }

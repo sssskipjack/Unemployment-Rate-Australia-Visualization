@@ -3,7 +3,7 @@
     "title": {
         "text": "Sunburst Charts for Unemployment Reasons by Age Range",
         "font": "Roboto",
-        "fontSize": 16,
+        "fontSize": 20,
         "anchor": "middle",
         "color": "#333",
         "subtitle": " ",
@@ -39,6 +39,7 @@
         "field": "Age Range",
         "type": "nominal",
         "title": null
+        
     },
     "columns": 4,
     "spec": {
@@ -63,7 +64,12 @@
                         "field": "Classification",
                         "type": "nominal",
                         "legend": {
-                            "title": "Classification and Category"
+                            "title": "Classification and Category",
+                            "titleFont": "Roboto",
+                            "titleFontSize": 14,
+                            "labelFont": "Roboto",
+                            "labelFontSize": 14,
+                            "labelColor": "#333"
                         },
                         "scale": {
                             "scheme": "tableau20"

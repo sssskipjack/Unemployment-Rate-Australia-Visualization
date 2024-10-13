@@ -10,7 +10,7 @@
     "subtitlePadding": 15
   },
   "width": 600,
-  "height": 400,
+  "height": 350,
   "description": "Stacked area chart of employment metrics over time in Australia",
   "data": {
     "url": "https://raw.githubusercontent.com/sssskipjack/Unemployment-Rate-Australia-Visualization/refs/heads/main/data/EmploymentInformationLong.csv",
@@ -32,15 +32,20 @@
       "aggregate": "sum",
       "field": "Value",
       "type": "quantitative",
-      "title": "Number of People"
+      "title": "Number of People Surveyed"
     },
     "color": {
       "field": "Metric",
       "type": "nominal",
       "title": "Employment Metric",
       "scale": {
-        "scheme": "redgrey"
+        "scheme": "blueorange"
       }
+    },
+    "order": {
+      "field": "Metric",  
+      "type": "nominal",
+      "sort": "ascending"
     },
     "tooltip": [
       {
@@ -52,12 +57,12 @@
       {
         "field": "Metric",
         "type": "nominal",
-        "title": "Metric"
+        "title": "Employment Metric"
       },
       {
         "field": "Value",
         "type": "quantitative",
-        "title": "Value"
+        "title": "Number of people Surveyed"
       }
     ]
   }
